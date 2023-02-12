@@ -1,0 +1,22 @@
+#hello-text {
+  -fx-font-size: 40;
+  -fx-fill: linear-gradient(#0000ff, #ff0000, #0000ff);
+  -fx-stroke: red;
+  -fx-stroke-width: 2;
+  -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);
+  -fx-background-radius: 10;
+  -fx-background-insets: 10;
+  -fx-padding: 10;
+  -fx-border-radius: 10;
+}
+#hello-rect {
+  -fx-fill: linear-gradient(#000000, white, #0000ff);
+  -fx-stroke: black;
+  -fx-stroke-width: 2;
+  -fx-effect: dropshadow(gaussian, #000000, 10, 0, 0, 0);
+  -fx-background-radius: 10;
+  -fx-background-insets: 10;
+  -fx-padding: 10;
+  -fx-border-radius: 10;
+  -fx-background-color: black;
+}
