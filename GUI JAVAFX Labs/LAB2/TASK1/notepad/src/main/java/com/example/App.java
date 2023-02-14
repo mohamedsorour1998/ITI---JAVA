@@ -1,6 +1,9 @@
 package com.example;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Menu;
@@ -8,11 +11,22 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonBar.ButtonData;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.DialogPane;
+import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.util.Pair;
+
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.Optional;
 
 /**
  * JavaFX App
@@ -33,7 +47,6 @@ public class App extends Application {
         newItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
             ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).setText("");
         });
-
         newItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+N"));
         MenuItem openItem = new MenuItem("Open");
         openItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+O"));
@@ -92,14 +105,25 @@ public class App extends Application {
                 }
             }
         });
-
+        MenuItem printItem = new MenuItem(
+                "Print");
+        printItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+P"));
+        printItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
+            javafx.print.PrinterJob job = javafx.print.PrinterJob.createPrinterJob();
+            if (job != null) {
+                boolean success = job.printPage(((TextArea) ((BorderPane) scene.getRoot()).getCenter()));
+                if (success) {
+                    job.endJob();
+                }
+            }
+        });
         MenuItem exitItem = new MenuItem(
                 "Exit");
         exitItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+E"));
         exitItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
             stage.close();
         });
-        filem.getItems().addAll(newItem, openItem, saveItem, new SeparatorMenuItem(), exitItem);
+        filem.getItems().addAll(newItem, openItem, saveItem, printItem, new SeparatorMenuItem(), exitItem);
 
         Menu edit = new Menu("Edit");
         MenuItem undoItem = new MenuItem(
@@ -164,14 +188,66 @@ public class App extends Application {
                 javafx.event.ActionEvent e) -> {
             ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).selectAll();
         });
+        MenuItem findItem = new MenuItem("Find");
+        findItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+F"));
+        findItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Find");
+            dialog.setHeaderText("Find");
+            dialog.setContentText("Enter the text to find:");
+            Optional<String> result = dialog.showAndWait();
+            if (result.isPresent()) {
+                String text = ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).getText();
+                int index = text.indexOf(result.get());
+                if (index >= 0) {
+                    ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).selectRange(index,
+                            index + result.get().length());
+                }
+            }
+        });
+        MenuItem replaceItem = new MenuItem("Replace");
+        replaceItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+R"));
+        replaceItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
+            // create a new TextInputDialog
+            TextInputDialog replaceDialog = new TextInputDialog();
+            replaceDialog.setTitle("Replace");
+            replaceDialog.setHeaderText("Replace");
+            replaceDialog.setContentText("Replace with:");
+
+            // get the result from the dialog
+            Optional<String> replaceResult = replaceDialog.showAndWait();
+
+            // if the result is present (i.e. the user clicked OK), get the text the user
+            // entered
+            if (replaceResult.isPresent()) {
+                String replaceText = replaceResult.get();
+                String selectedText = ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).getSelectedText();
+                String currentText = ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).getText();
+
+                // if no text is selected, show an alert dialog
+                if (selectedText == null || selectedText.isEmpty()) {
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setTitle("Replace");
+                    alert.setHeaderText("No Text Selected");
+                    alert.setContentText("Please select the text you want to replace.");
+                    alert.showAndWait();
+                } else {
+                    // replace the selected text with the text the user entered
+                    String newText = currentText.replace(selectedText, replaceText);
+                    ((TextArea) ((BorderPane) scene.getRoot()).getCenter()).setText(newText);
+                }
+            }
+        });
+
         edit.getItems().addAll(undoItem, cutItem, copyItem, pasteItem, deleteItem, new SeparatorMenuItem(),
-                selectAllItem);
+                selectAllItem, new SeparatorMenuItem(), findItem, replaceItem);
 
         Menu help = new Menu("Help");
         MenuItem aboutItem = new MenuItem(
                 "About Notepad");
         aboutItem.setAccelerator(javafx.scene.input.KeyCombination.keyCombination("Ctrl+H"));
-        aboutItem.addEventHandler(javafx.event.ActionEvent.ACTION, (javafx.event.ActionEvent e) -> {
+        aboutItem.addEventHandler(javafx.event.ActionEvent.ACTION, (
+                javafx.event.ActionEvent e) -> {
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("About Notepad");
             alert.setHeaderText("Notepad by soRouR!");
