@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx/13/javafx-13.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-base/13/javafx-base-13.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-fxml/13/javafx-fxml-13.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-controls/13/javafx-controls-13.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-graphics/13/javafx-graphics-13.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-archetype-fxml/0.0.6/javafx-archetype-fxml-0.0.6.pom" />
+        <option value="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-maven-archetypes/0.0.6/javafx-maven-archetypes-0.0.6.pom" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" project-jdk-name="1.8" project-jdk-type="JavaSDK" />
+</project>

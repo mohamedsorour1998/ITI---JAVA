@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/TASK2.iml" filepath="$PROJECT_DIR$/.idea/TASK2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx/13/javafx.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx/13/javafx.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-archetype-fxml/0.0.6/javafx-archetype-fxml.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-archetype-fxml/0.0.6/javafx-archetype-fxml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-base/13/javafx-base.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-base/13/javafx-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-controls/13/javafx-controls.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-controls/13/javafx-controls.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-fxml/13/javafx-fxml.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-fxml/13/javafx-fxml.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-graphics/13/javafx-graphics.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-graphics/13/javafx-graphics.iml" />
+      <module fileurl="file://$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-maven-archetypes/0.0.6/javafx-maven-archetypes.iml" filepath="$PROJECT_DIR$/my_jdbc_java_fx_app/lib/openjfx/javafx-maven-archetypes/0.0.6/javafx-maven-archetypes.iml" />
+    </modules>
+  </component>
+</project>
