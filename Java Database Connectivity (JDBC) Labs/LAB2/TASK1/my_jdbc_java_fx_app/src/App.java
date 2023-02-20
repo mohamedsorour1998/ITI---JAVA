@@ -1,7 +1,5 @@
 import java.util.ArrayList;
 import java.util.Date;
-import javafx.*;
-import javafx.application.Application;
 import java.sql.*;
 
 public class App {
